@@ -8,7 +8,6 @@ const service = new UserService(new UserRepository());
 
 export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    // Use validatedQuery if available, otherwise fall back to req.query
     const queryParams = (req as any).validatedQuery || req.query;
     const result = await service.getAllUsers(queryParams);
     res.json(result);
