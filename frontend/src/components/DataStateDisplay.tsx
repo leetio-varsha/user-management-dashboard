@@ -81,5 +81,4 @@ function DataStateDisplayComponent<T = any>(props: DataStateDisplayProps<T>) {
   return <>{children}</>;
 }
 
-// Use memo to prevent unnecessary re-renders when props haven't changed
 export const DataStateDisplay = memo(DataStateDisplayComponent) as typeof DataStateDisplayComponent;

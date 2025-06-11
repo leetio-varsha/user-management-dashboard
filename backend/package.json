@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/server.js",
-    "dev": "ts-node-dev src/server.ts",
+    "start": "ts-node-dev src/server.ts",
     "docker:mongo:up": "docker-compose up -d",
     "docker:mongo:down": "docker-compose down",
     "docker:mongo:logs": "docker logs -f user-dashboard-mongo",

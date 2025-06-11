@@ -58,13 +58,12 @@ export const FilterControls: React.FC<FilterControlsProps> = ({
 
   onAddToManufacturer,
 
-  // Use default options if not provided
   genderOptions: customGenderOptions = genderOptions,
   sortOptions: customSortOptions = sortOptions,
   limitOptions: customLimitOptions = limitOptions,
   orderOptions: customOrderOptions = orderOptions,
 }) => {
-  // Memoize handlers for better performance
+
   const handleGenderChange = useCallback(
     (value: string) => {
       onGenderChange(value);

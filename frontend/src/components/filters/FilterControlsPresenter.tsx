@@ -63,37 +63,43 @@ const FilterControlsPresenter: React.FC<FilterControlsPresenterProps> = ({
   onAddToManufacturer,
 }) => {
   return (
-    <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-8">
-      <SelectFilter
-        value={genderFilter}
-        onChange={onGenderChange}
-        options={genderOptions}
-        placeholder="Filter by gender"
-      />
+    <div className="mb-6">
+        <div className='flex flex-col gap-2 md:flex-row md:gap-4 mb-4'>
+            <InputFilter value={manufacturerId} onChange={onManufacturerIdChange} placeholder="New Manufacturer ID" />
+            <ButtonFilter onClick={onAddToManufacturer}>Add to Manufacturer</ButtonFilter>
+        </div>
 
-      <InputFilter value={companyFilter} onChange={onCompanyChange} placeholder="Company" />
 
-      <InputFilter value={manufacturerFilter} onChange={onManufacturerChange} placeholder="Filter by Manufacturer" />
+        <div className='flex flex-col gap-2 md:flex-row md:gap-4 mb-4'>
+            <SelectFilter
+                value={genderFilter}
+                onChange={onGenderChange}
+                options={genderOptions}
+                placeholder="Filter by gender"
+            />
 
-      <SelectFilter value={sortBy} onChange={onSortByChange} options={sortOptions} placeholder="Sort by" />
+            <InputFilter value={companyFilter} onChange={onCompanyChange} placeholder="Company" />
 
-      <SelectFilter
-        value={order}
-        onChange={(value) => onOrderChange(value as 'asc' | 'desc')}
-        options={orderOptions}
-        placeholder="Order"
-      />
+            <InputFilter value={manufacturerFilter} onChange={onManufacturerChange} placeholder="Filter by Manufacturer" />
 
-      <SelectFilter
-        value={String(limit)}
-        onChange={(value) => onLimitChange(Number(value))}
-        options={limitOptions}
-        placeholder="Items per page"
-      />
+            <SelectFilter value={sortBy} onChange={onSortByChange} options={sortOptions} placeholder="Sort by" />
 
-      <InputFilter value={manufacturerId} onChange={onManufacturerIdChange} placeholder="New Manufacturer ID" />
+            <SelectFilter
+                value={order}
+                onChange={(value) => onOrderChange(value as 'asc' | 'desc')}
+                options={orderOptions}
+                placeholder="Order"
+            />
 
-      <ButtonFilter onClick={onAddToManufacturer}>Add to Manufacturer</ButtonFilter>
+            <SelectFilter
+                value={String(limit)}
+                onChange={(value) => onLimitChange(Number(value))}
+                options={limitOptions}
+                placeholder="Items per page"
+            />
+        </div>
+
+
     </div>
   );
 };

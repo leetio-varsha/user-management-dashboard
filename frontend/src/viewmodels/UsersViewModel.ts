@@ -1,7 +1,8 @@
-import { useState, useEffect, useCallback } from 'react';
+import {useState, useEffect, useCallback, useMemo} from 'react';
 import { type UserFilters } from '../interfaces/user';
 import defaultApiService, { type ApiService, type FetchUsersResponse } from '../services/apiService';
 import { useBaseViewModel } from '../hooks/useBaseViewModel.ts';
+import {debounce} from "../utils/debounce.ts";
 
 export function useUsersViewModel(apiService: ApiService = defaultApiService) {
   const [filters, setFilters] = useState<UserFilters>({
@@ -27,9 +28,18 @@ export function useUsersViewModel(apiService: ApiService = defaultApiService) {
 
   const users = data?.users || [];
 
+
+  const debouncedFilter = useMemo(
+      () =>
+          debounce((filters) => {
+            void viewModel.fetchData(filters)
+          }, 500),
+      []
+  );
+
   const loadUsers = useCallback(() => {
-    void viewModel.fetchData(filters);
-  }, [viewModel, filters]);
+    debouncedFilter(filters);
+  }, [debouncedFilter, filters, viewModel]);
 
   useEffect(() => {
     loadUsers();

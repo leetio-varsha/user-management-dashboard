@@ -3,17 +3,14 @@ import { renderHook, act } from '@testing-library/react';
 import { useBaseViewModel } from '../useBaseViewModel';
 
 describe('useBaseViewModel', () => {
-  // Test data
   type TestData = { value: string };
   const testData: TestData = { value: 'test' };
   const testError = 'Test error';
 
-  // Mock fetch function
   // @ts-ignore
   let fetchFn: vi.Mock;
 
   beforeEach(() => {
-    // Reset mock before each test
     fetchFn = vi.fn().mockResolvedValue({ data: testData });
   });
 
