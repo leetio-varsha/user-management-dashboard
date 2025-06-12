@@ -8,7 +8,6 @@ import {
   Min,
   Max,
   IsDate,
-  ValidateNested,
   ArrayMinSize,
 } from 'class-validator';
 import { Type } from 'class-transformer';
@@ -201,9 +200,8 @@ export class UserDto {
 export class BulkAddUsersDto {
   @IsArray()
   @ArrayMinSize(1)
-  @ValidateNested({ each: true })
   @Type(() => UserDto)
-  users!: UserDto[];
+  users!: string[];
 
   @IsNotEmpty()
   @IsString()

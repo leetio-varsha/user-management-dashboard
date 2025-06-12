@@ -43,9 +43,8 @@ export class UserService {
     };
   }
 
-  async addUsersToManufacturer(users: any[], manufacturerId: string) {
-    const ids = users.map((u) => u._id);
-    return this.userRepo.assignManufacturer(ids, manufacturerId);
+  async addUsersToManufacturer(usersIds: any[], manufacturerId: string) {
+    return this.userRepo.assignManufacturer(usersIds, manufacturerId);
   }
 
   async getUserStats() {

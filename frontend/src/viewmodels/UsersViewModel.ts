@@ -32,7 +32,7 @@ export function useUsersViewModel(apiService: ApiService = defaultApiService) {
   const debouncedFilter = useMemo(
       () =>
           debounce((filters) => {
-            void viewModel.fetchData(filters)
+            void viewModel.fetchData(filters);
           }, 500),
       []
   );
@@ -64,7 +64,7 @@ export function useUsersViewModel(apiService: ApiService = defaultApiService) {
     }
 
     try {
-      const selectedUsers = users.filter((u) => selectedIds.includes(u._id));
+      const selectedUsers = users.filter((u) => selectedIds.includes(u._id)).map((user) => user._id);
       await apiService.bulkAddUsers(selectedUsers, manufacturerId);
       setSelectedIds([]);
       await loadUsers();

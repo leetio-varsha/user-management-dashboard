@@ -17,7 +17,7 @@ export interface FetchUsersResponse {
 export interface ApiService {
   fetchUsers(params: UserFilters): Promise<{ data: FetchUsersResponse }>;
   fetchStats(): Promise<{ data: StatGroup[] }>;
-  bulkAddUsers(users: User[], manufacturerId: string): Promise<any>;
+  bulkAddUsers(users: string[], manufacturerId: string): Promise<any>;
 }
 
 /**
@@ -40,7 +40,7 @@ export class AxiosApiService implements ApiService {
     return this.client.get<StatGroup[]>('/users/stats');
   }
 
-  bulkAddUsers(users: User[], manufacturerId: string): Promise<any> {
+  bulkAddUsers(users: string[], manufacturerId: string): Promise<any> {
     return this.client.post('/users/bulk-add', { users, manufacturerId });
   }
 }
